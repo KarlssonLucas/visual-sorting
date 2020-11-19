@@ -17,8 +17,10 @@ def drawGraph(arr):
     screen.fill((255,255,255))
     p = 0
     for i in arr:
-        pygame.draw.rect(screen, (255,0,0), (p, 500, 5, i), 10)
+        pygame.draw.rect(screen, (255,0,0), (p, 500, 5, i), 5)
         p += 2
+        if p % 250 == 0:
+            pygame.display.flip()
 
 def isSorted(arr):
     for i in range(0,len(arr)-2):
@@ -43,15 +45,14 @@ def sort(array):
                 equal.append(x)
             elif x > pivot:
                 greater.append(x)
-            drawGraph(array)
-            pygame.display.update()
+            drawGraph(less+equal+greater)
         return sort(less)+equal+sort(greater)
     else:
         return array 
 
 list = generateGraph(list)
 while running:
-    pygame.time.Clock().tick(10)
+    pygame.time.Clock().tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
