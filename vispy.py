@@ -8,7 +8,7 @@ running = True
 list = []
 
 def generateGraph(arr):
-    for i in range(0,500):
+    for i in range(0,1000):
         l = [random.randint(1,2000)]
         arr = arr + l
     return arr
@@ -45,7 +45,6 @@ def sort(array):
                 equal.append(x)
             elif x > pivot:
                 greater.append(x)
-            drawGraph(less+equal+greater)
         return sort(less)+equal+sort(greater)
     else:
         return array 
@@ -58,9 +57,8 @@ while running:
             running = False
 
     screen.fill((255, 255, 255))
-    drawGraph(list)
     if not isSorted(list):
-        list = sort(list)
+        drawGraph(sort(list))
 
     pygame.display.flip()
 pygame.quit()
